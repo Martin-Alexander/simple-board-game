@@ -55,7 +55,7 @@ function numberOfSquaresControlled(player) {
   for (var row = 0; row < ySize; row++) {
     for (var col = 0; col < xSize; col++) {
       var square = board[row][col];
-      if (square.player == player) {
+      if (square.player == player && numberOfActiveSoldiers(square) > 0) {
         counter++;
       }
     }

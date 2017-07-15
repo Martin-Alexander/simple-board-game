@@ -1,12 +1,13 @@
-function broadcastAction(fromSquare, toSquare, action) {
+function broadcastAction(fromSquare, toSquare, action, type) {
   $.ajax({
     method: "POST",
     url: "/action",
     data: {
       from: fromSquare,
       to: toSquare,
-      my_action: action,
-      token: myToken
+      myAction: action,
+      token: myToken,
+      type: type
     }
   });
 }
@@ -15,7 +16,7 @@ function recieveAction(data) {
   var from = board[data.from.y][data.from.x];
   var to = board[data.to.y][data.to.x];
   if (data.action == "move") {
-    soldiersMove(from, to)
+    soldiersMove(from, to, data.type)
   } else if (data.action == "fight") {
     soldiersEngageInCombat(from, to)
   }

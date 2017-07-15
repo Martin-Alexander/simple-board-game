@@ -54,11 +54,18 @@ function setMouseClicks() {
       previouslySelectedSquare = selectedSquare;
 
       if (squareBeingSelected.player && previouslySelectedSquare.player != squareBeingSelected.player) {
-        broadcastAction(previouslySelectedSquare, squareBeingSelected, "fight");
+        broadcastAction(previouslySelectedSquare, squareBeingSelected, "fight", "nill");
         soldiersEngageInCombat(previouslySelectedSquare, squareBeingSelected);
       } else if (squareBeingSelected != previouslySelectedSquare) {
-        broadcastAction(previouslySelectedSquare, squareBeingSelected, "move");
-        soldiersMove(previouslySelectedSquare, squareBeingSelected);
+        if (shiftDown) {
+          var type = "all";
+        } else if (controlDown) {
+          var type = "half";
+        } else {
+          var type = "single";
+        }
+        broadcastAction(previouslySelectedSquare, squareBeingSelected, "move", type);
+        soldiersMove(previouslySelectedSquare, squareBeingSelected, type);
       }
 
       deselectSquare(); 

@@ -41,13 +41,13 @@ function soldiersEngageInCombat(attackerSquare, defenderSquare) {
 }
 
 // Runs validates and moves soldiers from one square to another
-function soldiersMove(fromSquare, toSquare) {
+function soldiersMove(fromSquare, toSquare, type) {
   if (areAdjacent(fromSquare, toSquare)) {
-    if (shiftDown) {
+    if (type == "all") {
       var numberOfSoldiersToMove = numberOfActiveSoldiers(fromSquare);
-    } else if (controlDown) {
+    } else if (type == "half") {
       var numberOfSoldiersToMove = Math.floor(numberOfActiveSoldiers(fromSquare) / 2);
-    } else {
+    } else if (type == "single") {
       if (fromSquare.contents.length > 0) {
         var numberOfSoldiersToMove = 1;
       } else {

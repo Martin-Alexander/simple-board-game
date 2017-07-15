@@ -8,8 +8,9 @@ class MainController < ApplicationController
     ActionCable.server.broadcast "game_channel", {
       from: params[:from],
       to: params[:to],
-      action: params[:my_action],
-      token: params[:token]
+      action: params[:myAction],
+      token: params[:token],
+      type: params[:type]
     }
   end
 

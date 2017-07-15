@@ -26,3 +26,5 @@ var selectedSquare = false;
 
 var shiftDown = false;
 var controlDown = false;
+
+var myToken;

@@ -84,37 +84,15 @@ function deselectSquare() {
   selectedSquare = false;
 }
 
-// Runs validates and moves soldiers from one square to another
-function soldiersMove(fromSquare, toSquare) {
-  if (areAdjacent(fromSquare, toSquare)) {
-    if (shiftDown) {
-      var numberOfSoldiersToMove = numberOfActiveSoldiers(fromSquare);
-    } else if (controlDown) {
-      var numberOfSoldiersToMove = Math.floor(numberOfActiveSoldiers(fromSquare) / 2);
-    } else {
-      if (fromSquare.contents.length > 0) {
-        var numberOfSoldiersToMove = 1;
-      } else {
-        var numberOfSoldiersToMove = 0;
-      }
-    }
-    moveSoldiers(numberOfSoldiersToMove, fromSquare, toSquare)
-  }
-  deselectSquare();
-}
-
-// Performs the necessary steps of a move
-function moveSoldiers(numberOfSoldiers, fromSquare, toSquare) {
-  removeActiveSoldersFromSquare(numberOfSoldiers, fromSquare);
-  addSoldiersToSquare(numberOfSoldiers, turn, toSquare);
-  inactivateSoldiers(numberOfSoldiers, toSquare);
-}
 
 // Switches the turn player and runs new turn functions 
 function nextTurn() {
+  $(".whos-turn").css({display: "none"});
   if (turn == playerOne) {
+    $("#reds-turn").css({display: "inline-block"});
     turn = playerTwo;
   } else if (turn == playerTwo) {
+    $("#blues-turn").css({display: "inline-block"});
     turn = playerOne;
   }
   activateAllSoldiers(turn);
@@ -131,4 +109,19 @@ function activateAllSoldiers(player) {
       }
     }
   }
+}
+
+// Removes all soldiers from a given square
+function removeAllSoldiers(square) {
+  square.contents = [];
+}
+
+// Winner logic
+function winner(player) {
+  if (player == playerOne) {
+    findHQ(playerTwo).player = player;
+  } else if (player == playerTwo) {
+    findHQ(playerOne).player = player;
+  }
+  $("#container").html("<h1>Player " + player.playerNumber + " wins!</h1>");
 }

@@ -32,9 +32,14 @@ function generateInitialialSoldiers() {
   addSoldiersToSquare(10, playerTwo, playerTwoHQSquare)
 }
 
+function setToken() {
+  myToken = Math.random();
+}
+
 function initializeGame() {
   generateBoard();
   setPlayers();
   setHQs();
-  generateInitialialSoldiers();  
+  generateInitialialSoldiers(); 
+  setToken();
 }

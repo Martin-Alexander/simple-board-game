@@ -66,5 +66,5 @@ function numberOfSquaresControlled(player) {
 // Returns number of new soldiers based on number of squares controlled and
 // the price of soldiers (global game variable)
 function numberOfNewSoldiers(player) {
-  return Math.floor(numberOfSquaresControlled(player) / 2);
+  return Math.floor(numberOfSquaresControlled(player) / costOfSoldier);
 }

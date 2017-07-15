@@ -4,12 +4,18 @@ class MainController < ApplicationController
   def home
   end
 
-  def move
+  def action
     ActionCable.server.broadcast "game_channel", {
-      move: params[:move]
+      from: params[:from],
+      to: params[:to],
+      action: params[:my_action],
+      token: params[:token]
     }
   end
 
   def turn
+    ActionCable.server.broadcast "game_channel", {
+      action: "nextTurn"
+    }
   end
 end

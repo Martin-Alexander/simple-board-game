@@ -40,6 +40,11 @@ function setKeyPresses () {
 function setMouseClicks() {
   canvas.addEventListener("mouseup", function(event) {
 
+    // Do nothing if the game is over
+    if (!turn) {
+      return false;
+    }
+
     var squareBeingSelected = board[mouseTile.row][mouseTile.col];
     var previouslySelectedSquare;
 
@@ -48,19 +53,15 @@ function setMouseClicks() {
 
       previouslySelectedSquare = selectedSquare;
 
-      if (previouslySelectedSquare == squareBeingSelected) {
-
-        // Deselect
-        deselectSquare(); 
-      } else if (squareBeingSelected.player && previouslySelectedSquare.player != squareBeingSelected.player) {
-
-        // Fight
+      if (squareBeingSelected.player && previouslySelectedSquare.player != squareBeingSelected.player) {
+        broadcastAction(previouslySelectedSquare, squareBeingSelected, "fight");
         soldiersEngageInCombat(previouslySelectedSquare, squareBeingSelected);
-      } else {
-
-        // Move
+      } else if (squareBeingSelected != previouslySelectedSquare) {
+        broadcastAction(previouslySelectedSquare, squareBeingSelected, "move");
         soldiersMove(previouslySelectedSquare, squareBeingSelected);
       }
+
+      deselectSquare(); 
 
     } else {
       // User is selecting a square for the first time

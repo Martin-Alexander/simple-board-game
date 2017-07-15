@@ -17,7 +17,11 @@ function renderBoard() {
 function drawnSoldierCount(square) {
   canvasContext.textAlign="center"; 
   canvasContext.font = "16px Georgia";
-  canvasContext.fillStyle = "black";
+  if (square.HQ) {
+    canvasContext.fillStyle = "white";
+  } else {
+    canvasContext.fillStyle = "black";
+  }
   if (square.player) {
     canvasContext.fillText(numberOfActiveSoldiers(square) + "/" + 
     numberOfInactiveSoldiers(square), (columnWidth * square.x) + (columnWidth / 2), (rowHeight * square.y) + (rowHeight / 2));
@@ -35,6 +39,10 @@ function drawSquare(square) {
   }
   canvasContext.fillStyle = color;
   canvasContext.fillRect(columnWidth * square.x, rowHeight * square.y, columnWidth, rowHeight);
+  if (square.HQ) {
+    canvasContext.fillStyle = "rgba(0, 0, 0, 0.5)";
+    canvasContext.fillRect(columnWidth * square.x, rowHeight * square.y, columnWidth, rowHeight);    
+  }
   drawnSoldierCount(square);
 }
 

@@ -2,9 +2,9 @@
 
 // Updates the 'player' property of a square
 function updateSquarePlayer(square) {
-  if (square.contents.length > 0) {
+  if (square.contents.length > 0 && !square.HQ) {
     square.player = square.contents[0].player
-  } else {
+  } else if (!square.HQ) {
     square.player = false;
   }
 }
@@ -118,6 +118,7 @@ function nextTurn() {
     turn = playerOne;
   }
   activateAllSoldiers(turn);
+  addSoldiersToSquare(numberOfNewSoldiers(turn), turn, findHQ(turn));
 }
 
 // Activates all soldiers of a given player on the board

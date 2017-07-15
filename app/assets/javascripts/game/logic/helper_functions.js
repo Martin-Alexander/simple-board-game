@@ -47,3 +47,24 @@ function areAdjacent(squareOne, squareTwo) {
     return false;
   }
 }
+
+// Return number of squares controlled by a given player
+function numberOfSquaresControlled(player) {
+  var counter = 0;
+
+  for (var row = 0; row < ySize; row++) {
+    for (var col = 0; col < xSize; col++) {
+      var square = board[row][col];
+      if (square.player == player) {
+        counter++;
+      }
+    }
+  }  
+  return counter;
+}
+
+// Returns number of new soldiers based on number of squares controlled and
+// the price of soldiers (global game variable)
+function numberOfNewSoldiers(player) {
+  return Math.floor(numberOfSquaresControlled(player) / 2);
+}

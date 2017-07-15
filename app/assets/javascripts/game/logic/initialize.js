@@ -1,18 +1,4 @@
-// Initialization
-
-const xSize = 7;
-const ySize = 7;
-
-const initialNumberOfSoldiers = 10;
-
-var playerOne;
-var playerTwo;
-
-var board = [];
-
-var turn;
-
-var costOfSoldier = 4;
+// Initialization game
 
 function generateBoard() {
   for (var row = 0; row < ySize; row++) {

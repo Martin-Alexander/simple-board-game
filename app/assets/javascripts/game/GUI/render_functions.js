@@ -16,7 +16,7 @@ function renderBoard() {
 // Generates text that displays soldier-tile information
 function drawnSoldierCount(square) {
   canvasContext.textAlign="center"; 
-  canvasContext.font = "20px Georgia";
+  canvasContext.font = "16px Georgia";
   canvasContext.fillStyle = "black";
   if (square.player) {
     canvasContext.fillText(numberOfActiveSoldiers(square) + "/" + 

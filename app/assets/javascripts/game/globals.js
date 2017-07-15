@@ -1,5 +1,5 @@
-const xSize = 7;
-const ySize = 7;
+const xSize = 10;
+const ySize = 10;
 
 const initialNumberOfSoldiers = 10;
 

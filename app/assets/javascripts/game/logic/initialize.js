@@ -17,10 +17,10 @@ function setPlayers() {
 }
 
 function setHQs() {
-  board[2][3].HQ = true;
-  board[2][3].player = playerOne;
-  board[4][3].HQ = true;
-  board[4][3].player = playerTwo;
+  board[2][4].HQ = true;
+  board[2][4].player = playerOne;
+  board[7][5].HQ = true;
+  board[7][5].player = playerTwo;
 }
 
 

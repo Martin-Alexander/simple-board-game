@@ -95,8 +95,8 @@ function nextTurn() {
     $("#blues-turn").css({display: "inline-block"});
     turn = playerOne;
   }
-  activateAllSoldiers(turn);
   addSoldiersToSquare(numberOfNewSoldiers(turn), turn, findHQ(turn));
+  activateAllSoldiers(turn);
 }
 
 // Activates all soldiers of a given player on the board

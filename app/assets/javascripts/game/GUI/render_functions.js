@@ -50,10 +50,16 @@ function drawSquare(square) {
   canvasContext.lineTo(x - columnWidth, y + rowHeight/2);
   canvasContext.closePath();
   canvasContext.fill();
-  // if (square.HQ) {
-  //   canvasContext.fillStyle = "rgba(0, 0, 0, 0.5)";
-  //   canvasContext.fillRect(x, y, columnWidth / 2, rowHeight);    
-  // }
+  if (square.HQ) {
+    canvasContext.fillStyle = "rgba(0, 0, 0, 0.5)";
+    canvasContext.beginPath();
+    canvasContext.moveTo(x, y);
+    canvasContext.lineTo(x + columnWidth, y + rowHeight/2);
+    canvasContext.lineTo(x, y + rowHeight);
+    canvasContext.lineTo(x - columnWidth, y + rowHeight/2);
+    canvasContext.closePath();
+    canvasContext.fill();   
+  }
   drawnSoldierCount(square);
 }
 

@@ -15,6 +15,8 @@ function renderBoard() {
 
 // Generates text that displays soldier-tile information
 function drawnSoldierCount(square) {
+  var x = iso_x(columnWidth * square.x, rowHeight * square.y);
+  var y = iso_y(columnWidth * square.x, rowHeight * square.y);
   canvasContext.textAlign="center"; 
   canvasContext.font = "16px Georgia";
   if (square.HQ) {
@@ -24,12 +26,15 @@ function drawnSoldierCount(square) {
   }
   if (square.player) {
     canvasContext.fillText(numberOfActiveSoldiers(square) + "/" + 
-    numberOfInactiveSoldiers(square), (columnWidth * square.x) + (columnWidth / 2), (rowHeight * square.y) + (rowHeight / 2));
+    numberOfInactiveSoldiers(square), x, y + (rowHeight / 2));
   }
 }
 
 // Generates the square's color and text
 function drawSquare(square) {
+  var x = iso_x(columnWidth * square.x, rowHeight * square.y);
+  var y = iso_y(columnWidth * square.x, rowHeight * square.y);
+
   if (square.player == false){ 
     var color = "grey";
   } else if (square.player == playerOne) {
@@ -38,27 +43,49 @@ function drawSquare(square) {
     var color = "red";
   }
   canvasContext.fillStyle = color;
-  canvasContext.fillRect(columnWidth * square.x, rowHeight * square.y, columnWidth, rowHeight);
-  if (square.HQ) {
-    canvasContext.fillStyle = "rgba(0, 0, 0, 0.5)";
-    canvasContext.fillRect(columnWidth * square.x, rowHeight * square.y, columnWidth, rowHeight);    
-  }
+  canvasContext.beginPath();
+  canvasContext.moveTo(x, y);
+  canvasContext.lineTo(x + columnWidth, y + rowHeight/2);
+  canvasContext.lineTo(x, y + rowHeight);
+  canvasContext.lineTo(x - columnWidth, y + rowHeight/2);
+  canvasContext.closePath();
+  canvasContext.fill();
+  // if (square.HQ) {
+  //   canvasContext.fillStyle = "rgba(0, 0, 0, 0.5)";
+  //   canvasContext.fillRect(x, y, columnWidth / 2, rowHeight);    
+  // }
   drawnSoldierCount(square);
 }
 
 // Highlights the mouse-overed square
 function drawMouseOverTile() {
+  var x = iso_x(columnWidth * mouseTile.col, rowHeight * mouseTile.row);
+  var y = iso_y(columnWidth * mouseTile.col, rowHeight * mouseTile.row);
   var square = board[mouseTile.row][mouseTile.col];
   if (totalNumberOfSoldiers(square) > 0) {
     canvasContext.fillStyle = "rgba(255, 255, 255, 0.4)";
-    canvasContext.fillRect(columnWidth * mouseTile.col, rowHeight * mouseTile.row, columnWidth, rowHeight);
+    canvasContext.beginPath();
+    canvasContext.moveTo(x, y);
+    canvasContext.lineTo(x + columnWidth, y + rowHeight/2);
+    canvasContext.lineTo(x, y + rowHeight);
+    canvasContext.lineTo(x - columnWidth, y + rowHeight/2);
+    canvasContext.closePath();
+    canvasContext.fill();
   } 
 }
 
 // Highlights the selected square
 function drawSelectedTile() {
+  var x = iso_x(columnWidth * selectedSquare.x, rowHeight * selectedSquare.y);
+  var y = iso_y(columnWidth * selectedSquare.x, rowHeight * selectedSquare.y);  
   if (selectedSquare) {
     canvasContext.fillStyle = "rgba(255, 255, 255, 0.6)";
-    canvasContext.fillRect(columnWidth * selectedSquare.x, rowHeight * selectedSquare.y, columnWidth, rowHeight);
+    canvasContext.beginPath();
+    canvasContext.moveTo(x, y);
+    canvasContext.lineTo(x + columnWidth, y + rowHeight/2);
+    canvasContext.lineTo(x, y + rowHeight);
+    canvasContext.lineTo(x - columnWidth, y + rowHeight/2);
+    canvasContext.closePath();
+    canvasContext.fill();
   }
 }

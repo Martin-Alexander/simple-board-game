@@ -6,12 +6,12 @@ function setMouseTile() {
   canvas.addEventListener("mousemove", function(event) {
     var rect = canvas.getBoundingClientRect();
     mouseCoordinates = {
-      x: event.clientX - rect.left,
+      x: event.clientX - rect.left - canvas.width/2,
       y: event.clientY - rect.top
     };
     mouseTile = {
-      col: Math.floor(mouseCoordinates.x / columnWidth), 
-      row: Math.floor(mouseCoordinates.y / rowHeight) 
+      col: Math.floor( ((2 * mouseCoordinates.y + mouseCoordinates.x) / 2 ) / columnWidth), 
+      row: Math.floor( ((2 * mouseCoordinates.y - mouseCoordinates.x) / 2 ) / rowHeight )
     };
   });  
 }

@@ -12,7 +12,7 @@ function setDimensions() {
   numberOfRows = board.length;
   numberOfColumns = board[0].length;
   rowHeight = canvas.height / numberOfRows;
-  columnWidth = canvas.width / numberOfColumns;
+  columnWidth = canvas.height / numberOfRows;
 }
 
 function initializeGUI () {

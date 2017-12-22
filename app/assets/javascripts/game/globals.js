@@ -28,3 +28,5 @@ var shiftDown = false;
 var controlDown = false;
 
 var myToken;
+
+var img = document.getElementById("tile");

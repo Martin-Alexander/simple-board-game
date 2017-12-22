@@ -42,7 +42,9 @@ function drawSquare(square) {
   } else if (square.player == playerTwo) {
     var color = "red";
   }
-  canvasContext.fillStyle = color;
+
+  var pat = canvasContext.createPattern(img, "repeat");
+  canvasContext.fillStyle = pat;
   canvasContext.beginPath();
   canvasContext.moveTo(x, y);
   canvasContext.lineTo(x + columnWidth, y + rowHeight/2);
@@ -50,6 +52,7 @@ function drawSquare(square) {
   canvasContext.lineTo(x - columnWidth, y + rowHeight/2);
   canvasContext.closePath();
   canvasContext.fill();
+
   if (square.HQ) {
     canvasContext.fillStyle = "rgba(0, 0, 0, 0.5)";
     canvasContext.beginPath();

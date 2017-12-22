@@ -1,7 +1,7 @@
-const xSize = 10;
-const ySize = 10;
+var xSize = 10;
+var ySize = 10;
 
-const initialNumberOfSoldiers = 10;
+var initialNumberOfSoldiers = 10;
 
 var playerOne;
 var playerTwo;
